@@ -1,0 +1,32 @@
+create table sensor(
+SensorID int(5),
+Tipo varchar(20),
+Marca varchar(20),
+Modelo varchar(20),
+primary key (SensorID)
+);
+create table medicion(
+Toma_medicion int(5) auto_incremet Primary Key, 
+SensorID int(5),
+Tiempo time,
+
+foreign key (SensorID) references sensor(SensorID)
+);
+create table humedad(
+
+Toma_humedad int(5) auto_incremet Primary Key, 
+Toma_medicion int(5),
+Valor int(4),
+
+foreign key (Toma_medicion) references medicion(Toma_medicion)
+);
+create table temperatura(
+Toma_temperatura int(4) Auto_increment Primary KEY, 
+Toma_medicion int(5),
+Valor_celsius float(4,2),
+Valor_farenheit float(4,2),
+primary key (Toma_temperatura),
+foreign key (Toma_medicion) references medicion(Toma_medicion)
+)
+insert into sensor(SensorID, Tipo, Marca, Modelo) values (1,'humedad', 'steren', 'DHT11');
+insert into sensor(SensorID, Tipo, Marca, Modelo) values (2,'temperatura', 'steren', 'DHT11');
